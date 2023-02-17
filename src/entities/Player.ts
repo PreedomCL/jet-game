@@ -25,7 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.controls = controls;
         this.angleRadians = angleRad;
         this.speed = 75;
-        this.roll = 0;
+        this.roll = 1;
         this.health = 10;
         this.id = id;
     }
@@ -39,9 +39,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         
         //Check for roll left/right
         if(this.keyJustDown(this.controls.rollLeft)) {
-            this.roll = this.clamp(this.roll + 1, -3, 3);
+            this.roll = Phaser.Math.Clamp(this.roll + 1, -3, 3);
         }else if(this.keyJustDown(this.controls.rollRight)) {
-            this.roll = this.clamp(this.roll -1, -3, 3);
+            this.roll = Phaser.Math.Clamp(this.roll -1, -3, 3);
         }
         
         //Check for shoot bullet
@@ -52,7 +52,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         //Set correct animation
         this.setFrame(this.roll + 3);
 
-        this.checkInBounds();
+        //this.checkInBounds();
     }
 
     public damage(damage: number) {
@@ -72,10 +72,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     private keyJustDown(key: Phaser.Input.Keyboard.Key): boolean {
         return Phaser.Input.Keyboard.JustDown(key);
-    }
-
-    private clamp(number: number, low: number, high: number): number {
-        return Math.max(low, Math.min(number, high));
     }
 
     private checkInBounds(): void {

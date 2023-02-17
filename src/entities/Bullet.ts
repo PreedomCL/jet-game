@@ -21,7 +21,7 @@ export default class Bullet extends Physics.Arcade.Image {
     }
 
     public update(time: number, delta: number) {
-        this.checkInBounds();
+        //this.checkInBounds();
         this.lifeTime -= delta;
         if(this.lifeTime <= 0) {
             this.destroy();

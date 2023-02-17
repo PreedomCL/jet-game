@@ -14,6 +14,6 @@ export default {
         default: 'arcade',
         arcade: { debug: false }
     },
-    pixelArt: false,
+    pixelArt: true,
     title: 'Jet Game'
 };
